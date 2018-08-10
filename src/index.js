@@ -1,45 +1,50 @@
-
-import React from 'react';
-import ReactDOM from 'react-dom';
-import 'antd/dist/antd.css';
-import './index.css';
-import { Modal, Button } from 'antd';
+import React from "react";
+import ReactDOM from "react-dom";
+import "antd/dist/antd.css";
+import "./index.css";
+import { Modal, Button } from "antd";
 
 class App extends React.Component {
-  state = { visible: false }
+  state = { visible: false };
 
   showModal = () => {
     this.setState({
-      visible: true,
+      visible: true
     });
-  }
+  };
 
-  handleOk = (e) => {
+  handleOk = e => {
     console.log(e);
     this.setState({
-      visible: false,
+      visible: false
     });
-  }
+  };
 
-  handleCancel = (e) => {
+  handleCancel = e => {
     console.log(e);
     this.setState({
-      visible: false,
+      visible: false
     });
-  }
-  onkeydown =(e)=> {
+  };
+  onkeydown = e => {
     if (!e.metaKey) {
       e.preventDefault();
     }
-    console.log(e.keyCode, "ssssssssssss", "a");
-  }
+    console.log(e.keyCode, "ssssssssssss");
+  };
   componentDidMount() {
-    window.addEventListener("keydown", (e) => this.onkeydown);
+    // http://keycode.info/
+    window.addEventListener("keydown", e => this.onkeydown);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("keydown", e => this.onkeydown);
   }
   render() {
     return (
       <div>
-        <Button type="primary" onClick={this.showModal}>Open</Button>
+        <Button type="primary" onClick={this.showModal}>
+          Open
+        </Button>
         <Modal
           title="Basic Modal"
           visible={this.state.visible}
@@ -55,5 +60,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('container'));
-          
+ReactDOM.render(<App />, document.getElementById("container"));
